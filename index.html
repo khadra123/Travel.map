@@ -14,9 +14,52 @@
     <title>Travel Map</title>
 </head>
 <body>
+    <!--header-->
+    <div class="card text-center" style="width: 100%">
+        <h2 class="card-header">
+            Travel Destiantion Finder
+        </h2>
+    </div>
+    <!--search bar-->
+    <nav class="navbar navbar-light bg-light justify-content-around">
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" id="searchBtn" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+    <!--image box-->
+    <div class="text-center" id="img_box">
+        <img src="assets/images/default_image.jpg" class="rounded img-fluid" alt="default travel image">
+    </div>
+    
+    <!--search results box-->
+    <div class="row">
+        <div class="col">
+            <div class="card text-white bg-dark mb-3" style="max-width: 48%">
+                <div class="card-header text-center">Cities
+                </div>
+                <div class="card-body text-center" >
+                  <h5 class="card-title">Dark card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-white bg-dark " style="max-width: 48%">
+                <div class="card-header text-center">Cities
+                </div>
+                <div class="card-body text-center" >
+                  <h5 class="card-title">Dark card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
     
 
-    <!--js link -->
+    <!--jslink -->
     <script src="assets/js/script.js"></script>
 </body>
 </html>
+

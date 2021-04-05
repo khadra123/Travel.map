@@ -1,3 +1,14 @@
+// set variables 
+
+var searchHistoryArray = [];
+var search = document.querySelector('#search');
+var searchBtn = document.querySelector('#countrySearchBtn');
+var searchHistoryBtn = document.querySelector('#searchHistoryBtn');
+var cityDisplayCard = document.querySelector('#cityCard');
+var displayImageCard = document.querySelector('#imageCard');
+var returnedCityResults = [];
+var searchHistoryCard = document.querySelector('#historyCard');
+
 var countries = "US"
 
 fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/countries/" + countries + "/regions", {
