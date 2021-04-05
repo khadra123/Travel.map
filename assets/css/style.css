@@ -6,3 +6,27 @@
     --dark: #012941;
     --border-radius: .3rem;
 }
+
+body {
+    color: var(--secondary);
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.container{
+    background-color:var(--primary);
+    margin:auto;
+}
+
+.btn:hover{
+    background-color: var(--light-dark);
+}
+
+footer{
+    background-color: var(--primary);
+    color: var(--dark);
+    width: 100%;
+    padding: 40px 35px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
