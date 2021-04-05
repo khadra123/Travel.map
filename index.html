@@ -13,51 +13,117 @@
     <link rel="icon" type="image" href=""/>
     <title>Travel Map</title>
 </head>
-<body>
-    <!--header-->
-    <div class="card text-center" style="width: 100%">
-        <h2 class="card-header">
-            Travel Destiantion Finder
-        </h2>
-    </div>
-    <!--search bar-->
-    <nav class="navbar navbar-light bg-light justify-content-around">
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" id="searchBtn" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
-    <!--image box-->
-    <div class="text-center" id="img_box">
-        <img src="assets/images/default_image.jpg" class="rounded img-fluid" alt="default travel image">
-    </div>
-    
-    <!--search results box-->
-    <div class="row">
-        <div class="col">
-            <div class="card text-white bg-dark mb-3" style="max-width: 48%">
-                <div class="card-header text-center">Cities
-                </div>
-                <div class="card-body text-center" >
-                  <h5 class="card-title">Dark card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card text-white bg-dark " style="max-width: 48%">
-                <div class="card-header text-center">Cities
-                </div>
-                <div class="card-body text-center" >
-                  <h5 class="card-title">Dark card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-    
 
+<body>
+    <!--Navigation bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="assets/images/025-landscape.png" width="30rem" height="30rem" alt="destination icon"/> Travel Map</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="#results">Search Results</a>
+              <a class="nav-link" href="#history">Search History</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+    <!--Jumbotron:Title and search bar-->
+    <div class="jumbotron jumbotron-fluid " style="background-image:url('./assets/images/airplane.jpg'); background-size:cover;">
+      <div class="container text-light text-center my-3">
+        <h1 class="display-4">Travel Destination Finder</h1>
+        <p>Type out the Countries to find out....</p>
+        <form class="form-inline justify-content-center my-3">
+          <input class="form-control mr-sm-2" id="searchBtn" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+
+    <!--Search Results header-->
+    <div class="row mx-4">
+      <div class="col">
+        <h2 class="text-center display-5">Search Results</h2>
+      </div>
+
+    </div>
+
+    <!--search results box-->
+    <div class="row" id="results">
+
+      <!--First Card -->
+      <div class="col-8 col-md-6">
+          <div class="card text-white bg-dark my-5 rounded">
+              <div class="card-header text-center fs-4">
+                 Countries
+              </div>
+              <div class="card-body text-center" >
+                <h5 class="card-title">Dark card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+        </div>
+
+      <!--Second Card-->
+      <div class="col-8 col-md-6">
+          <div class="card text-white bg-dark my-5 rounded">
+              <div class="card-header text-center fs-4">
+                Countries Searched
+              </div>
+              <div class="card-body text-center" >
+                <h5 class="card-title">Dark card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+        </div> 
+    </div>
+
+    <!--SSaved results header-->
+    <div class="row mx-4">
+        <div class="col">
+          <h2 class="text-center display-5">Saved Results</h2>
+        </div>
+      </div>
+
+    <!--saved cities-->
+    <div class="row" class="savedResultsRow" id="history">
+      
+      <!--Saved results col 1-->  
+      <div class="col-8 col-md-6">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-header text-center fs-4"> 
+                  Saved Cities
+                </div>
+                <div class="card-body text-center" >
+                  <h5 class="card-title">Dark card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+            </div>
+        </div>
+
+        <!--Saved results col 2-->
+      <div class="col-8 col-md-6">
+          <div class="card text-white bg-dark mb-3">
+              <div class="card-header text-center fs-4"> 
+                  Saved Other
+              </div>
+              <div class="card-body text-center" >
+                <h5 class="card-title">Dark card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Footer-->
+    <footer class="text-muted font-weight-lighter fs-6">
+        &copy; 2021 By Team Travel Map
+        <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </footer>
+   
     <!--jslink -->
     <script src="assets/js/script.js"></script>
 </body>

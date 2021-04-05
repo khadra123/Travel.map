@@ -1,6 +1,4 @@
 // set variables 
-
-var searchHistoryArray = [];
 var search = document.querySelector('#search');
 var searchBtn = document.querySelector('#countrySearchBtn');
 var searchHistoryBtn = document.querySelector('#searchHistoryBtn');
@@ -9,6 +7,13 @@ var displayImageCard = document.querySelector('#imageCard');
 var returnedCityResults = [];
 var searchHistoryCard = document.querySelector('#historyCard');
 
+var searchHistoryCard = document.querySelector('#historyCard');
+
+//
+var searchHistoryArray = [];
+var returnedCityResults = [];
+
+//temporarily variable to be delated later
 var countries = 'canada'
 
 fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/countries/" + "CA" + "/regions", {
@@ -44,3 +49,4 @@ fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/countries?limit=1&offset=0&nameP
 .catch(function(err) {
 	console.error(err);
 });
+
