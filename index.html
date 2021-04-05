@@ -17,7 +17,7 @@
     <!--Navigation bar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Travel Map</a>
+          <a class="navbar-brand" href="#"><img src="assets/images/025-landscape.png" width="30rem" height="30rem" alt="destination icon"/> Travel Map</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -31,19 +31,18 @@
         </div>
       </nav>
 
-    <!--header-->
-    <div class="card text-center" style="width: 100%">
-        <h2 class="card-header">
-            Travel Destination Finder
-        </h2>
-    </div>
-    <!--search bar-->
-    <nav class="navbar navbar-light bg-light justify-content-around">
-        <form class="form-inline">
+    <!--Jumbotron:Title and search bar-->
+    <div class="jumbotron jumbotron-fluid" style="background-image:url(./assets/images/default_image.jpg) no-repeat; background-size: cover;">
+      <div class="container my-5 bg-secondary test-light text-center">
+        <h1 class="display-4">Travel Destination Finder</h1>
+        <p>Type out the Countries to find out....</p>
+        <form class="form-inline my-5 align-self-center">
           <input class="form-control mr-sm-2" id="searchBtn" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-    </nav>
+      </div>
+    </div>
+
     <!--image box-->
     <div class="text-center" id="img_box">
         <img src="assets/images/default_image.jpg" class="rounded img-fluid" alt="default travel image">
