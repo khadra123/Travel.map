@@ -28,7 +28,8 @@ function countrySearchFunction(){
 
 	//if statement to check if user has put in country name or not
 	if(userSearchCountry) {
-		$('#display-country-name').text(" in " + userSearchCountry);
+		//display country search name
+		$('.display-country-name').text(userSearchCountry);
 		//hid the error msg if present
 		$('#inputErrorMsg').css("display", "none");
 
