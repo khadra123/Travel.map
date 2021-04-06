@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js" integrity="sha512-fHXRw0CXruAoINU11+hgqYvY/PcsOWzmj0QmcSOtjlJcqITbPyypc8cYpidjPurWpCnlB8VKfRwx6PIpASCUkQ==" crossorigin="anonymous"></script>
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!--css link-->
     <link rel="stylesheet" href="./assets/css/style.css">
 
@@ -15,7 +17,7 @@
     <title>Travel Map</title>
 </head>
 
-<body>
+<body >  
     <!--Navigation bar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -26,7 +28,7 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
               <a class="nav-link active" aria-current="page" href="#results">Search Results</a>
-              <a class="nav-link" href="#history">Search History</a>
+              <a class="nav-link" href="#history">Places To Visit List</a>
             </div>
           </div>
         </div>
@@ -34,18 +36,18 @@
 
     <!--Jumbotron:Title and search bar-->
     <div class="jumbotron jumbotron-fluid " style="background-image:url('./assets/images/airplane.jpg'); background-size:cover;">
-      <div class="container text-light text-center my-3">
+      <div id="searchForm" class="container text-light text-center my-3 p-3">
         <h1 class="display-4">Travel Destination Finder</h1>
         <p>Type out the Countries to find out....</p>
         <form class="form-inline justify-content-center my-3">
-          <input class="form-control mr-sm-2" id="searchBtn" type="search" placeholder="Search" aria-label="Search">
-          <button onclick="countrySearchFunction()" class="btn btn-info my-2 my-sm-0" type="submit" id="countrySearchBtn">Search</button>
+          <input class="form-control mr-sm-2" id="searchBtn" type="search" placeholder="Search" aria-label="Search" type="text">
+          <button onclick="countrySearchFunction()" class="btn btn-info my-2 my-sm-0" type="button" id="countrySearchBtn">Search</button>
         </form>
       </div>
     </div>
 
     <!--Search Results header-->
-    <div class="row mx-4">
+    <div class="row m-4">
       <div class="col">
         <h2 class="text-center display-5">Search Results</h2>
       </div>
@@ -55,40 +57,36 @@
     <div class="row" id="results">
 
       <!--First Card -->
-      <div class="col-8 col-md-6">
-          <div class="card text-white bg-dark my-5 rounded">
+      <div class="col-md-6">
+          <div class="card text-white bg-dark m-2 rounded">
               <div class="card-header text-center fs-4">
-                 Countries
+                 <h4>Image of <span class="display-country-name"></span></h4>
               </div>
               <div class="card-body text-center" >
-                <h5 class="card-title">Dark card title</h5>
-                <!--List of countries-->
-                <ul id="list-countries" class="list-group list-group-flush">
-                </ul>
+                <h5 class="card-title">ADD IMAGE HERE</h5>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               </div>
             </div>
         </div>
 
       <!--Second Card-->
-      <div class="col-8 col-md-6">
-          <div class="card text-white bg-dark my-5 rounded">
+      <div class="col-md-6">
+          <div class="card text-white bg-dark m-2 rounded">
               <div class="card-header text-center fs-4">
-                Countries Searched
+                <h4>Places to visit in <span class="display-country-name"></span></h4>
               </div>
-              <div class="card-body text-center" >
-                <h5 class="card-title">Dark card title</h5>
-                <!--List of countries searched-->
-                <ul id="list-searched" class="list-group list-group-flush">
+              <div id = "display-result-regions" class="card-body text-center" >
+                <!--List of results-->
+                <ul id="list-results" class="list-group list-group-flush">
                 </ul>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">Drag and drop regions to 'My list of places to visit' box below to build your list</p>
               </div>
             </div>
         </div> 
     </div>
 
-    <!--Saved results header-->
-    <div class="row mx-4">
+    <!--SSaved results header-->
+    <div class="row m-4">
         <div class="col">
           <h2 class="text-center display-5">Saved Results</h2>
         </div>
@@ -98,10 +96,10 @@
     <div class="row" class="savedResultsRow" id="history">
       
       <!--Saved results col 1-->  
-      <div class="col-8 col-md-6">
+      <div class="col-md-6">
             <div class="card text-white bg-dark mb-3">
                 <div class="card-header text-center fs-4"> 
-                  Saved Cities
+                  <h4>My list of places to visit</h4>
                 </div>
                 <div class="card-body text-center" >
                   <h5 class="card-title">Dark card title</h5>
@@ -114,10 +112,10 @@
         </div>
 
         <!--Saved results col 2-->
-      <div class="col-8 col-md-6">
+      <div class="col-md-6">
           <div class="card text-white bg-dark mb-3">
               <div class="card-header text-center fs-4"> 
-                  Saved Other
+                  <h4>Saved Other</h4>
               </div>
               <div class="card-body text-center" >
                 <h5 class="card-title">Dark card title</h5>
@@ -129,9 +127,19 @@
             </div>
         </div>
     </div>
-    
+
+    <div id="recent-search-container" class="row m-4">
+      <div class="col">
+        <h2 class="text-center display-5">Saved Results</h2>
+      </div>
+    </div>
+
+    <div class="row m-2" id="recent-search-btn">
+        
+    </div>
+
     <!--Footer-->
-    <footer class="text-muted font-weight-lighter fs-6">
+    <footer class="text-muted font-weight-lighter fs-6 p-4">
         &copy; 2021 By Team Travel Map
         <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </footer>

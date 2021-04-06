@@ -15,6 +15,7 @@ body {
 .container{
     background-color:var(--primary);
     margin:auto;
+    opacity: 0.9;
 }
 
 .btn:hover{
@@ -25,8 +26,11 @@ footer{
     background-color: var(--primary);
     color: var(--dark);
     width: 100%;
-    padding: 40px 35px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+#recent-search-btn, #recent-search-container {
+    display: none;
 }

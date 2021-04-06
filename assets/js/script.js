@@ -1,90 +1,214 @@
 // set variables 
+
 var search = document.querySelector('#search');
 var searchBtn = document.querySelector('#searchBtn');
 var searchHistoryBtn = document.querySelector('#searchHistoryBtn');
 var cityDisplayCard = document.querySelector('#cityCard');
 var displayImageCard = document.querySelector('#imageCard');
+var returnedCityResults = [];
 var searchHistoryCard = document.querySelector('#historyCard');
 
+var searchHistoryCard = document.querySelector('#historyCard');
+
+// storing user input country in this var after onclick event
+var userSearchCountry;
+var countryCode;
+var countryCodeTwo;
 //
 var searchHistoryArray = [];
 var returnedCityResults = [];
+let city1;
+
+console.log(returnedCityResults[0]);
+
+//store country search to local storage 
+if (!localStorage.getItem('recentSearch')) {   
+	localStorage.setItem('recentSearch', JSON.stringify(searchHistoryArray));
+	}
+	var historySearchList = JSON.parse(localStorage.getItem('recentSearch'));  
+
+
 
 //start of all functions 
 
 function countrySearchFunction(){
-    function imageFucntion()
-};
-//api for image
-function imageFunction () {
-    fetch("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-key": "edc80740bfmsh7af0ea3522b23e7p1413b9jsnbec35903712b",
-		"x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
-	    }
-    })
-    .then(response => {
-    	console.log(response);
-    })
-        .catch(err => {
-    	console.error(err);
-    });
-};
 
-//Country Regions array
+	userSearchCountry = searchBtn.value;
 
-var cities = [];
+	//if statement to check if user has put in country name or not
+	if(userSearchCountry) {
+		//display country search name
+		$('.display-country-name').text(userSearchCountry);
+		//hid the error msg if present
+		$('#inputErrorMsg').css("display", "none");
 
-var 
+		getCountryCodeRegions()
 
-var loadCities = function(cities){
+		//imageFunction()
 
-    cities= JSON.parse(localStorage.getItem("cities"));
+		//add new search to local storage
 
-    if(!cities){
-        cities ={
-            countries:[],
-            countriesSearched:[],
-            savedCountries:[],
-            visitedCountries:[]
-        };
-    }
+		//display recent searchs in navbar
+		var recentSearchNavBtn = $('<a>').html('class="nav-link" href="#recent-search-container" Recent Searchs');
+		recentSearchNavBtn.attr('href', '#recent-search-container');
+		recentSearchNavBtn.addClass('nav-link');
+		recentSearchNavBtn.text('Recent Searchs');
+		$('.navbar-nav').append(recentSearchNavBtn);
 
-    $.each(cities, function(list, arr){
-        console.log(list, arr);
+		//display recent section on html
+		$('#recent-search-btn').css('display', 'block');
+		$('#recent-search-container').css('display', 'block');
 
-        arr.forEach(function(cities){
-            createcountry()
-        })
-    })
-};
 
-/* // enable draggable/sortable feature on list-group elements
+		if (historySearchList) {
+			historySearchList.push(userSearchCountry);
+			localStorage.setItem('recentSearch', JSON.stringify(historySearchList));
+		}
+		
+
+	} else {
+		//display error msg on html
+		var incorrectInputMsg = $('<p>');
+		incorrectInputMsg.text('Please enter validate country name');
+		incorrectInputMsg.attr('id', 'inputErrorMsg');
+		$("#searchForm").append(incorrectInputMsg);
+	
+	}
+	recentSearchBtn()
+}
+
+	// function to get recent search data from local storage and create buttons
+	function recentSearchBtn() {
+    
+		$('#past-search-btn').html('');
+	
+		for (i = 0; i < historySearchList.length; i++) {
+			var btn = $('<button>');
+			btn.addClass('btn btn-info m-2 my-sm-0');
+			btn.attr('type', 'button');
+			btn.text(historySearchList[i]);
+			btn.attr('data-city', historySearchList[i]);
+			$('#recent-search-btn').append(btn);
+		}
+	}
+
+	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
+	function imageFunction () {
+		fetch("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true", {
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-key": "edc80740bfmsh7af0ea3522b23e7p1413b9jsnbec35903712b",
+			"x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
+			}
+		})
+		.then(response => {
+			console.log(response);
+		})
+			.catch(err => {
+			console.error(err);
+		});
+	};
+
+//Nested API call to get country code first then based on code get country regions
+function getCountryCodeRegions() {
+
+	//API call to Get country code from the country name 
+	//var findCountryCode = 'Canada';
+
+	fetch("https://restcountries-v1.p.rapidapi.com/name/" +  userSearchCountry, {
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-key": "9898e76638msh7fc219f72ab87d6p18d7ddjsn2c6c05aff44d",
+			"x-rapidapi-host": "restcountries-v1.p.rapidapi.com"
+		}
+	})
+	.then(function(response) {
+		return response.json();
+		//var CountryCode;
+	})
+
+	.then(function(response) {
+		console.log(response);
+		countryCode = response[0].alpha2Code;
+		countryCodeTwo = response[0].alpha3Code
+		
+		//API call to get 3 regions from the country code 
+		function getRegions() {
+			console.log(countryCode);
+		
+			fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/countries/" + countryCode + "/regions?limit=3", {
+				"method": "GET",
+				"headers": {
+					"x-rapidapi-key": "9898e76638msh7fc219f72ab87d6p18d7ddjsn2c6c05aff44d",
+					"x-rapidapi-host": "wft-geo-db.p.rapidapi.com"
+				}
+			})
+			
+			.then(function(response) {
+				return response.json();
+				//var CountryCode;
+			})
+
+			.then(function(response) {
+
+				for (var i = 0; i < 3; i++) {
+                    returnedCityResults.push(response.data[i].name);
+                    //added it as a list instead of a header(h5)
+					var regions = $('<li>').addClass("list-group-item bg-dark text-white");
+                    regions.text(response.data[i].name);
+                    //appended with ul 
+                    $('.list-group').append(regions);
+                    
+                }
+                
+                console.log(returnedCityResults);
+        
+				//display regions on HTML
+			})
+
+			.catch(function(err) {
+				console.error(err);
+			});
+
+		}
+		//end of getRegions function
+		getRegions()
+		})
+
+		.catch( function(err) {
+			console.error(err);
+		})
+
+}
+//end of getCountryCode function
+
+ 
+// enable draggable/sortable feature on list-group elements
 $(".card .list-group").sortable({
     // enable dragging across lists
     connectWith: $(".card .list-group"),
     scroll: false,
     tolerance: "pointer",
     helper: "clone",
-    activate: function(event, ui) {
-      $(this).addClass("dropover");
-      $(".bottom-trash").addClass("bottom-trash-drag");
+    activate: function(event) {
+      console.log("activate", this);
     },
     deactivate: function(event, ui) {
-      $(this).removeClass("dropover");
-      $(".bottom-trash").removeClass("bottom-trash-drag");
+        console.log("deactivate", this);
     },
     over: function(event) {
-      $(event.target).addClass("dropover-active");
+        console.log("over", event.target);
     },
     out: function(event) {
-      $(event.target).removeClass("dropover-active");
+        console.log("out", event.target);
     },
     update: function() {
-      var tempArr = [];
+        console.log($(this).children());
+    }
+});     
+      //  var tempArr = [];
   
-      // loop over current set of children in sortable list
+/*       // loop over current set of children in sortable list
       $(this)
         .children()
         .each(function() {
@@ -99,16 +223,6 @@ $(".card .list-group").sortable({
               .text()
               .trim()
           });
-        });
-  
-      // trim down list's ID to match object property
-      var arrName = $(this)
-        .attr("id")
-        .replace("list-", "");
-  
-      // update array on tasks object and save
-      tasks[arrName] = tempArr;
-      saveTasks();
-    }
-  });
- */
+        }); */
+
+ 
