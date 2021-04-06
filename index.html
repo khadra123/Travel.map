@@ -6,6 +6,8 @@
     <!--linking to jquery and bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js" integrity="sha512-fHXRw0CXruAoINU11+hgqYvY/PcsOWzmj0QmcSOtjlJcqITbPyypc8cYpidjPurWpCnlB8VKfRwx6PIpASCUkQ==" crossorigin="anonymous"></script>
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!--css link-->
     <link rel="stylesheet" href="./assets/css/style.css">
 
@@ -33,12 +35,12 @@
 
     <!--Jumbotron:Title and search bar-->
     <div class="jumbotron jumbotron-fluid " style="background-image:url('./assets/images/airplane.jpg'); background-size:cover;">
-      <div class="container text-light text-center my-3">
+      <div id="searchForm" class="container text-light text-center my-3">
         <h1 class="display-4">Travel Destination Finder</h1>
         <p>Type out the Countries to find out....</p>
         <form class="form-inline justify-content-center my-3">
-          <input class="form-control mr-sm-2" id="searchBtn" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-info my-2 my-sm-0" type="submit">Search</button>
+          <input class="form-control mr-sm-2" id="searchBtn" type="search" placeholder="Search" aria-label="Search" type="text">
+          <button onclick="countrySearchFunction()" class="btn btn-info my-2 my-sm-0" type="button" id="countrySearchBtn">Search</button>
         </form>
       </div>
     </div>

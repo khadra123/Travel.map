@@ -1,5 +1,6 @@
 // set variables 
 
+var search = document.querySelector('#search');
 var searchBtn = document.querySelector('#searchBtn');
 var searchHistoryBtn = document.querySelector('#searchHistoryBtn');
 var cityDisplayCard = document.querySelector('#cityCard');
@@ -14,15 +15,51 @@ var countryCodeTwo;
 var searchHistoryArray = [];
 var returnedCityResults = [];
 
+// storing user input country in this var
+var userSearchCountry;
+
+//start of all functions 
+
+function countrySearchFunction(){
+	console.log('hi');
+	userSearchCountry = searchBtn.value;
+	//if statement to check if user has put in country name or not
+	if(userSearchCountry) {
+    //imageFucntion()
+	getCountryCode()
+	} else {
+	var incorrectInputMsg = $('<p>');
+	incorrectInputMsg.text('Please enter validate country name');
+	$("#searchForm").append(incorrectInputMsg);
+	
+	}
+}
+
+
+	//api for image
+	function imageFunction () {
+		fetch("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true", {
+		"method": "GET",
+		"headers": {
+			"x-rapidapi-key": "edc80740bfmsh7af0ea3522b23e7p1413b9jsnbec35903712b",
+			"x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
+			}
+		})
+		.then(response => {
+			console.log(response);
+		})
+			.catch(err => {
+			console.error(err);
+		});
+	};
 
 
 function getCountryCode() {
 
 	//API call to Get country code from the country name 
-	//var findCountryCode = searchBtn.val();
-	var findCountryCode = 'Canada';
+	//var findCountryCode = 'Canada';
 
-	fetch("https://restcountries-v1.p.rapidapi.com/name/" +  findCountryCode, {
+	fetch("https://restcountries-v1.p.rapidapi.com/name/" +  userSearchCountry, {
 		"method": "GET",
 		"headers": {
 			"x-rapidapi-key": "9898e76638msh7fc219f72ab87d6p18d7ddjsn2c6c05aff44d",
@@ -66,6 +103,7 @@ function getCountryCode() {
 			});
 
 		}
+		//end of getRegions function
 		getRegions()
 		})
 
@@ -74,5 +112,5 @@ function getCountryCode() {
 		})
 
 }
+//end of getCountryCode function
 
-getCountryCode()
