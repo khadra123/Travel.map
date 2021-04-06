@@ -14,18 +14,17 @@ var searchHistoryCard = document.querySelector('#historyCard');
 var userSearchCountry;
 var countryCode;
 var countryCodeTwo;
-//
+
 var searchHistoryArray = [];
 var returnedCityResults = [];
-let city1;
 
-console.log(returnedCityResults[0]);
 
 //store country search to local storage 
 if (!localStorage.getItem('recentSearch')) {   
 	localStorage.setItem('recentSearch', JSON.stringify(searchHistoryArray));
 	}
 	var historySearchList = JSON.parse(localStorage.getItem('recentSearch'));  
+
 
 
 
@@ -153,16 +152,18 @@ function getCountryCodeRegions() {
 
 				for (var i = 0; i < 3; i++) {
                     returnedCityResults.push(response.data[i].name);
+                    
                     //added it as a list instead of a header(h5)
-					var regions = $('<li>').addClass("list-group-item bg-dark text-white");
-                    regions.text(response.data[i].name);
+                    var regions = $('<li>')
+                        .addClass("list-group-item bg-dark text-white")
+                        .text(response.data[i].name);
+
                     //appended with ul 
                     $('.list-group').append(regions);
                     
                 }
-                
+
                 console.log(returnedCityResults);
-        
 				//display regions on HTML
 			})
 
@@ -182,8 +183,7 @@ function getCountryCodeRegions() {
 }
 //end of getCountryCode function
 
- 
-// enable draggable/sortable feature on list-group elements
+ // enable draggable/sortable feature on list-group elements
 $(".card .list-group").sortable({
     // enable dragging across lists
     connectWith: $(".card .list-group"),
@@ -206,23 +206,5 @@ $(".card .list-group").sortable({
         console.log($(this).children());
     }
 });     
-      //  var tempArr = [];
-  
-/*       // loop over current set of children in sortable list
-      $(this)
-        .children()
-        .each(function() {
-          // save values in temp array
-          tempArr.push({
-            text: $(this)
-              .find("p")
-              .text()
-              .trim(),
-            date: $(this)
-              .find("span")
-              .text()
-              .trim()
-          });
-        }); */
 
  
