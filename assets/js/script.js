@@ -15,6 +15,8 @@ var countryCodeTwo;
 var searchHistoryArray = [];
 var returnedCityResults = [];
 
+
+
 // storing user input country in this var
 var userSearchCountry;
 
@@ -23,22 +25,29 @@ var userSearchCountry;
 function countrySearchFunction(){
 	console.log('hi');
 	userSearchCountry = searchBtn.value;
+
 	//if statement to check if user has put in country name or not
 	if(userSearchCountry) {
-    //imageFucntion()
-	$('#inputErrorMsg').css("display", "none");
-	getCountryCode()
+		$('#display-country-name').text(" in " + userSearchCountry);
+		//hid the error msg if present
+		$('#inputErrorMsg').css("display", "none");
+
+		getCountryCodeRegions()
+
+		//imageFunction()
+
 	} else {
-	var incorrectInputMsg = $('<p>');
-	incorrectInputMsg.text('Please enter validate country name');
-	incorrectInputMsg.attr('id', 'inputErrorMsg');
-	$("#searchForm").append(incorrectInputMsg);
+		//display error msg on html
+		var incorrectInputMsg = $('<p>');
+		incorrectInputMsg.text('Please enter validate country name');
+		incorrectInputMsg.attr('id', 'inputErrorMsg');
+		$("#searchForm").append(incorrectInputMsg);
 	
 	}
 }
 
 
-	//api for image
+	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
 	function imageFunction () {
 		fetch("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true", {
 		"method": "GET",
@@ -55,8 +64,8 @@ function countrySearchFunction(){
 		});
 	};
 
-
-function getCountryCode() {
+//Nested API call to get country code first then based on code get country regions
+function getCountryCodeRegions() {
 
 	//API call to Get country code from the country name 
 	//var findCountryCode = 'Canada';
@@ -74,11 +83,10 @@ function getCountryCode() {
 	})
 
 	.then(function(response) {
+		console.log(response);
 		countryCode = response[0].alpha2Code;
 		countryCodeTwo = response[0].alpha3Code
-		console.log(countryCode);
-		console.log(response);
-
+		
 		//API call to get 3 regions from the country code 
 		function getRegions() {
 			console.log(countryCode);
@@ -97,10 +105,18 @@ function getCountryCode() {
 			})
 
 			.then(function(response) {
-				console.log(response);
+
+				for (var i = 0; i < 3; i++) {
+					returnedCityResults.push(response.data[i].name);
+					var regions = $('<h5>');
+					regions.text(response.data[i].name);
+					$('#display-result-regions').append(regions);
+				}
+				console.log(returnedCityResults);
+				//display regions on HTML
 			})
 
-			.catch(function(responce) {
+			.catch(function(err) {
 				console.error(err);
 			});
 
