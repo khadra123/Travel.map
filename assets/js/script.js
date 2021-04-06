@@ -152,14 +152,14 @@ function getCountryCodeRegions() {
 
 				for (var i = 0; i < 3; i++) {
                     returnedCityResults.push(response.data[i].name);
-                    
+
                     //added it as a list instead of a header(h5)
                     var regions = $('<li>')
                         .addClass("list-group-item bg-dark text-white")
                         .text(response.data[i].name);
 
                     //appended with ul 
-                    $('.list-group').append(regions);
+                    $('#list-results').append(regions);
                     
                 }
 
@@ -184,27 +184,51 @@ function getCountryCodeRegions() {
 //end of getCountryCode function
 
  // enable draggable/sortable feature on list-group elements
-$(".card .list-group").sortable({
+$(".card #list-results").sortable({
     // enable dragging across lists
-    connectWith: $(".card .list-group"),
+    connectWith: $(".card .light-group"),
     scroll: false,
     tolerance: "pointer",
     helper: "clone",
     activate: function(event) {
-      console.log("activate", this);
+        $(this).addClass("dropover");
+        $(".bottom-trash").addClass("bottom-trash-drag");
     },
     deactivate: function(event, ui) {
-        console.log("deactivate", this);
+        $(this).removeClass("dropover");
+        $(".bottom-trash").removeClass("bottom-trash-drag");
     },
     over: function(event) {
-        console.log("over", event.target);
+        //add class to sortables to show
+        $(event.target).addClass("dropover-active");
     },
     out: function(event) {
-        console.log("out", event.target);
+        $(event.target).removeClass("dropover-active");
     },
     update: function() {
         console.log($(this).children());
     }
 });     
+
+// trash icon can be dropped onto
+$("#trash").droppable({
+    //accept these classes to drop into the trash bin
+    accept: ".card .list-group-item",
+    tolerance: "touch",
+
+    // remove dragged element from the dom
+    drop: function(event, ui) {
+      // drop into
+      ui.draggable.remove();
+      $(".bottom-trash").removeClass("bottom-trash-active");
+    },
+    over: function(event, ui) {
+      console.log(ui);
+      $(".bottom-trash").addClass("bottom-trash-active");
+    },
+    out: function(event, ui) {
+      $(".bottom-trash").removeClass("bottom-trash-active");
+    }
+});
 
  
