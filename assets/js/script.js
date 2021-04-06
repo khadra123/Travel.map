@@ -26,10 +26,12 @@ function countrySearchFunction(){
 	//if statement to check if user has put in country name or not
 	if(userSearchCountry) {
     //imageFucntion()
+	$('#inputErrorMsg').css("display", "none");
 	getCountryCode()
 	} else {
 	var incorrectInputMsg = $('<p>');
 	incorrectInputMsg.text('Please enter validate country name');
+	incorrectInputMsg.attr('id', 'inputErrorMsg');
 	$("#searchForm").append(incorrectInputMsg);
 	
 	}
