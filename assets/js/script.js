@@ -23,7 +23,7 @@ var userSearchCountry;
 //start of all functions 
 
 function countrySearchFunction(){
-	console.log('hi');
+
 	userSearchCountry = searchBtn.value;
 
 	//if statement to check if user has put in country name or not
