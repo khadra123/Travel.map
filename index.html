@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--linking to jquery and bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js" integrity="sha512-fHXRw0CXruAoINU11+hgqYvY/PcsOWzmj0QmcSOtjlJcqITbPyypc8cYpidjPurWpCnlB8VKfRwx6PIpASCUkQ==" crossorigin="anonymous"></script>
     <!--jQuery-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -16,7 +17,7 @@
     <title>Travel Map</title>
 </head>
 
-<body>
+<body >  
     <!--Navigation bar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -75,6 +76,9 @@
                 <h4>Places to visit in <span class="display-country-name"></span></h4>
               </div>
               <div id = "display-result-regions" class="card-body text-center" >
+                <!--List of results-->
+                <ul id="list-results" class="list-group list-group-flush">
+                </ul>
                 <p class="card-text">Drag and drop regions to 'My list of places to visit' box below to build your list</p>
               </div>
             </div>
@@ -99,6 +103,9 @@
                 </div>
                 <div class="card-body text-center" >
                   <h5 class="card-title">Dark card title</h5>
+                  <!--List of saved cities-->
+                  <ul id="list-saved" class="list-group list-group-flush">
+                  </ul>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 </div>
             </div>
@@ -112,6 +119,9 @@
               </div>
               <div class="card-body text-center" >
                 <h5 class="card-title">Dark card title</h5>
+                <!--List of other-->
+                <ul id="list-other" class="list-group list-group-flush ">
+                </ul>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               </div>
             </div>
@@ -125,6 +135,13 @@
     </div>
 
     <div class="row m-2" id="recent-search-btn">
+    
+    </div>
+    <div class="mt-auto overflow-hidden" id="trash">
+      <div class="w-100 p-3 bg-info text-dark text-center bottom-trash">
+        <span class="oi oi-trash"> </span> Drop Here to Remove.
+      </div>
+    </div>  
         
     </div>
 
@@ -134,7 +151,14 @@
         <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
     </footer>
    
-    <!--jslink -->
+    <!--JQuery UI/CDNj links-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+      <!--jslink -->
     <script src="assets/js/script.js"></script>
 </body>
 </html>

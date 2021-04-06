@@ -9,19 +9,22 @@ var returnedCityResults = [];
 var searchHistoryCard = document.querySelector('#historyCard');
 
 var searchHistoryCard = document.querySelector('#historyCard');
+
 // storing user input country in this var after onclick event
 var userSearchCountry;
 var countryCode;
 var countryCodeTwo;
-//
+
 var searchHistoryArray = [];
 var returnedCityResults = [];
+
 
 //store country search to local storage 
 if (!localStorage.getItem('recentSearch')) {   
 	localStorage.setItem('recentSearch', JSON.stringify(searchHistoryArray));
 	}
 	var historySearchList = JSON.parse(localStorage.getItem('recentSearch'));  
+
 
 
 
@@ -148,12 +151,19 @@ function getCountryCodeRegions() {
 			.then(function(response) {
 
 				for (var i = 0; i < 3; i++) {
-					returnedCityResults.push(response.data[i].name);
-					var regions = $('<h5>');
-					regions.text(response.data[i].name);
-					$('#display-result-regions').append(regions);
-				}
-				console.log(returnedCityResults);
+                    returnedCityResults.push(response.data[i].name);
+
+                    //added it as a list instead of a header(h5)
+                    var regions = $('<li>')
+                        .addClass("list-group-item bg-dark text-white")
+                        .text(response.data[i].name);
+
+                    //appended with ul 
+                    $('#list-results').append(regions);
+                    
+                }
+
+                console.log(returnedCityResults);
 				//display regions on HTML
 			})
 
@@ -173,3 +183,52 @@ function getCountryCodeRegions() {
 }
 //end of getCountryCode function
 
+ // enable draggable/sortable feature on list-group elements
+$(".card #list-results").sortable({
+    // enable dragging across lists
+    connectWith: $(".card .light-group"),
+    scroll: false,
+    tolerance: "pointer",
+    helper: "clone",
+    activate: function(event) {
+        $(this).addClass("dropover");
+        $(".bottom-trash").addClass("bottom-trash-drag");
+    },
+    deactivate: function(event, ui) {
+        $(this).removeClass("dropover");
+        $(".bottom-trash").removeClass("bottom-trash-drag");
+    },
+    over: function(event) {
+        //add class to sortables to show
+        $(event.target).addClass("dropover-active");
+    },
+    out: function(event) {
+        $(event.target).removeClass("dropover-active");
+    },
+    update: function() {
+        console.log($(this).children());
+    }
+});     
+
+// trash icon can be dropped onto
+$("#trash").droppable({
+    //accept these classes to drop into the trash bin
+    accept: ".card .list-group-item",
+    tolerance: "touch",
+
+    // remove dragged element from the dom
+    drop: function(event, ui) {
+      // drop into
+      ui.draggable.remove();
+      $(".bottom-trash").removeClass("bottom-trash-active");
+    },
+    over: function(event, ui) {
+      console.log(ui);
+      $(".bottom-trash").addClass("bottom-trash-active");
+    },
+    out: function(event, ui) {
+      $(".bottom-trash").removeClass("bottom-trash-active");
+    }
+});
+
+ 
