@@ -30,3 +30,7 @@ footer{
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+#recent-search-btn, #recent-search-container {
+    display: none;
+}
