@@ -28,7 +28,7 @@ if (!localStorage.getItem('recentSearch')) {
 //run this function on page load so containers are not empty 
 getCountryCodeRegions()
 recentSearchBtn()
-imageFunction()
+//imageFunction()
 
 
 //start of all functions 
@@ -95,7 +95,7 @@ function recentButtonHandler(identifier) {
 }
 
 	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
-	
+document.getElementById("countrySearchFunction").addEventListener("click", function(imageFunction));
 
 	function imageFunction () {
 		console.log(searchBtn.value)
