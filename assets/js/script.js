@@ -41,6 +41,7 @@ function countrySearchFunction(){
 		//hid the error msg if present
 		$('#inputErrorMsg').css("display", "none");
 
+		$('#list-results').html("");
 		getCountryCodeRegions()
 
 		//imageFunction()
@@ -48,15 +49,15 @@ function countrySearchFunction(){
 		//add new search to local storage
 
 		//display recent searchs in navbar
-		var recentSearchNavBtn = $('<a>').html('class="nav-link" href="#recent-search-container" Recent Searchs');
-		recentSearchNavBtn.attr('href', '#recent-search-container');
-		recentSearchNavBtn.addClass('nav-link');
-		recentSearchNavBtn.text('Recent Searchs');
-		$('.navbar-nav').append(recentSearchNavBtn);
+		// var recentSearchNavBtn = $('<a>').html('class="nav-link" href="#recent-search-container" Recent Searchs');
+		// recentSearchNavBtn.attr('href', '#recent-search-container');
+		// recentSearchNavBtn.addClass('nav-link');
+		// recentSearchNavBtn.text('Recent Searchs');
+		// $('.navbar-nav').append(recentSearchNavBtn);
 
 		//display recent section on html
-		$('#recent-search-btn').css('display', 'block');
-		$('#recent-search-container').css('display', 'block');
+		//$('#recent-search-btn').css('display', 'block');
+		//$('#recent-search-container').css('display', 'block');
 
 
 		if (historySearchList) {
@@ -79,7 +80,7 @@ function countrySearchFunction(){
 	// function to get recent search data from local storage and create buttons
 	function recentSearchBtn() {
     
-		$('#past-search-btn').html('');
+		$('#recent-search-btn').html('');
 	
 		for (i = 0; i < historySearchList.length; i++) {
 			var btn = $('<button>');
@@ -153,12 +154,12 @@ function getCountryCodeRegions() {
 				for (var i = 0; i < 3; i++) {
                     returnedCityResults.push(response.data[i].name);
 
-                    //added it as a list instead of a header(h5)
+                    // add li with regions
                     var regions = $('<li>')
                         .addClass("list-group-item bg-dark text-white")
                         .text(response.data[i].name);
 
-                    //appended with ul 
+                    //appended with ul
                     $('#list-results').append(regions);
                     
                 }
