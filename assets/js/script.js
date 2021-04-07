@@ -11,7 +11,7 @@ var searchHistoryCard = document.querySelector('#historyCard');
 var searchHistoryCard = document.querySelector('#historyCard');
 
 // storing user input country in this var after onclick event
-var userSearchCountry;
+var userSearchCountry = 'Canada';
 var countryCode;
 var countryCodeTwo;
 
@@ -25,14 +25,19 @@ if (!localStorage.getItem('recentSearch')) {
 	}
 	var historySearchList = JSON.parse(localStorage.getItem('recentSearch'));  
 
-
+//run this function on page load so containers are not empty 
+getCountryCodeRegions()
+recentSearchBtn()
+//imageFunction()
 
 
 //start of all functions 
-
 function countrySearchFunction(){
-
 	userSearchCountry = searchBtn.value;
+
+	//Clear placeholder test and last input
+	$(searchBtn).val('')
+    $(searchBtn).attr('placeholder', "")
 
 	//if statement to check if user has put in country name or not
 	if(userSearchCountry) {
@@ -40,31 +45,17 @@ function countrySearchFunction(){
 		$('.display-country-name').text(userSearchCountry);
 		//hid the error msg if present
 		$('#inputErrorMsg').css("display", "none");
-
+		$('.api-error-msg').css("display", "none");
 		$('#list-results').html("");
 		getCountryCodeRegions()
 
 		//imageFunction()
 
-		//add new search to local storage
-
-		//display recent searchs in navbar
-		// var recentSearchNavBtn = $('<a>').html('class="nav-link" href="#recent-search-container" Recent Searchs');
-		// recentSearchNavBtn.attr('href', '#recent-search-container');
-		// recentSearchNavBtn.addClass('nav-link');
-		// recentSearchNavBtn.text('Recent Searchs');
-		// $('.navbar-nav').append(recentSearchNavBtn);
-
-		//display recent section on html
-		//$('#recent-search-btn').css('display', 'block');
-		//$('#recent-search-container').css('display', 'block');
-
-
 		if (historySearchList) {
 			historySearchList.push(userSearchCountry);
 			localStorage.setItem('recentSearch', JSON.stringify(historySearchList));
 		}
-		
+		recentSearchBtn()
 
 	} else {
 		//display error msg on html
@@ -72,25 +63,36 @@ function countrySearchFunction(){
 		incorrectInputMsg.text('Please enter validate country name');
 		incorrectInputMsg.attr('id', 'inputErrorMsg');
 		$("#searchForm").append(incorrectInputMsg);
-	
 	}
-	recentSearchBtn()
 }
 
-	// function to get recent search data from local storage and create buttons
-	function recentSearchBtn() {
+// function to get recent search data from local storage and create buttons
+function recentSearchBtn() {
     
-		$('#recent-search-btn').html('');
+	$('#recent-search-btn').html('');
 	
-		for (i = 0; i < historySearchList.length; i++) {
-			var btn = $('<button>');
-			btn.addClass('btn btn-info m-2 my-sm-0');
-			btn.attr('type', 'button');
-			btn.text(historySearchList[i]);
-			btn.attr('data-city', historySearchList[i]);
-			$('#recent-search-btn').append(btn);
-		}
+	for (i = 0; i < historySearchList.length; i++) {
+		var btn = $('<button>');
+		btn.addClass('btn btn-info my-sm-0 m-1');
+		btn.attr('type', 'button');
+		btn.text(historySearchList[i]);
+		btn.attr('value', historySearchList[i]);
+		btn.attr('href', '#results')
+		btn.attr('onclick', "recentButtonHandler(this)");
+		$('#recent-search-btn').append(btn);
 	}
+}
+
+//function to excute when recent searches btn is clicked
+function recentButtonHandler(identifier) {
+	//console.log('hi');
+	userSearchCountry = $(identifier).val();
+	$('#list-results').html("");
+	//console.log(userSearchCountry);
+	getCountryCodeRegions()
+	//imageFunction()
+	window.scrollTo(0, 0);
+}
 
 	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
 	function imageFunction () {
@@ -113,7 +115,6 @@ function countrySearchFunction(){
 function getCountryCodeRegions() {
 
 	//API call to Get country code from the country name 
-	//var findCountryCode = 'Canada';
 
 	fetch("https://restcountries-v1.p.rapidapi.com/name/" +  userSearchCountry, {
 		"method": "GET",
@@ -128,13 +129,13 @@ function getCountryCodeRegions() {
 	})
 
 	.then(function(response) {
-		console.log(response);
+		//console.log(response);
 		countryCode = response[0].alpha2Code;
 		countryCodeTwo = response[0].alpha3Code
 		
 		//API call to get 3 regions from the country code 
 		function getRegions() {
-			console.log(countryCode);
+			//console.log(countryCode);
 		
 			fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/countries/" + countryCode + "/regions?limit=3", {
 				"method": "GET",
@@ -161,16 +162,25 @@ function getCountryCodeRegions() {
 
                     //appended with ul
                     $('#list-results').append(regions);
-                    
                 }
-
-                console.log(returnedCityResults);
+                //console.log(returnedCityResults);
 				//display regions on HTML
 			})
 
 			.catch(function(err) {
 				console.error(err);
-			});
+				var apiErrorMsg = $('<p>');
+				apiErrorMsg.addClass('api-error-msg');
+				apiErrorMsg.text('Sorry, we are not able to complete this search. Please search another country');
+				$('#searchForm').append(apiErrorMsg);
+
+				if (historySearchList) {
+					historySearchList.pop(userSearchCountry);
+					localStorage.setItem('recentSearch', JSON.stringify(historySearchList));
+				}
+				recentSearchBtn()
+
+			})
 
 		}
 		//end of getRegions function
@@ -179,10 +189,21 @@ function getCountryCodeRegions() {
 
 		.catch( function(err) {
 			console.error(err);
+			var apiErrorMsg = $('<p>');
+			apiErrorMsg.addClass('api-error-msg');
+			apiErrorMsg.text('Sorry, we are not able to complete this search. Please search another country');
+			$('#searchForm').append(apiErrorMsg);
+
+			if (historySearchList) {
+				historySearchList.pop(userSearchCountry);
+				localStorage.setItem('recentSearch', JSON.stringify(historySearchList));
+			}
+			recentSearchBtn()
 		})
 
 }
 //end of getCountryCode function
+
 
  // enable draggable/sortable feature on list-group elements
 $(" #list-results").sortable({
