@@ -90,29 +90,47 @@ function recentButtonHandler(identifier) {
 	$('#list-results').html("");
 	//console.log(userSearchCountry);
 	getCountryCodeRegions()
-	//imageFunction()
+	imageFunction()
 	window.scrollTo(0, 0);
 }
 
 	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
-document.getElementById("countrySearchFunction").addEventListener("click", function(imageFunction));
+document.getElementById("countrySearchBtn").addEventListener("click", imageFunction);
 
 	function imageFunction () {
-		console.log(searchBtn.value)
-		var  imageURL = ("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn.value  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true")
+		console.log(userSearchCountry)
+		var  imageURL = ("https://bing-image-search1.p.rapidapi.com/images/search?q=" + userSearchCountry + "landscape" + "&count=2")
+		
 		fetch(imageURL, {
 		"method": "GET",
 		"headers": {
-			"x-rapidapi-key": "edc80740bfmsh7af0ea3522b23e7p1413b9jsnbec35903712b",
-			"x-rapidapi-host": "contextualwebsearch-websearch-v1.p.rapidapi.com"
+			"x-rapidapi-key": "3c02b8ed39mshcaf7f1ea54ace42p13d2dajsn1670ecde5fa3",
+			"x-rapidapi-host": "bing-image-search1.p.rapidapi.com"
 			}
+		})
+		.then(function(response) {
+			return response.json();
+			//var CountryCode;
 		})
 		.then(response => {
 			console.log(response);
+			// create var to hold data with the image
+			var responseContainerEl = document.querySelector
+			('#image-response');
+			responseContainerEl.innerHTML = '';
+
+			var apiImage = document.createElement('img');
+			console.log(response.value[0].thumbnailUrl);
+			apiImage.setAttribute('src', response.value[0].thumbnailUrl);
+
+			// append image
+			responseContainerEl.appendChild(apiImage);
+			apiImage.addClass("width", "auto");
+			apiImage.addClass("height", "50px")
 		})
 			.catch(err => {
 			console.error(err);
-		});
+		})
 	};
 
 
