@@ -35,23 +35,8 @@ footer{
     display: none;
 }
 
-.bottom-trash {
-    opacity: 0;
-    color: #f1f1f1;
-    font-size: 1rem;
-    font-family: "Staatliches", sans-serif;
-    transform: translateY(150px);
-    transition: all .5s ease-in-out; 
-    background-color: rgba(234, 0, 39, 0.7);
-    
-}
-
-
-.bottom-trash-drag {
-    transform: translateY(10px);
-    opacity: 1;
-  }
   
-.bottom-trash-active {
+#trash:hover {
     background-color: rgba(234, 0, 39, 1);
   }
+

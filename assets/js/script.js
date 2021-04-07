@@ -184,9 +184,9 @@ function getCountryCodeRegions() {
 //end of getCountryCode function
 
  // enable draggable/sortable feature on list-group elements
-$(".card #list-results").sortable({
+$(" #list-results").sortable({
     // enable dragging across lists
-    connectWith: $(".card .light-group"),
+    connectWith: $("#list-saved"),
     scroll: false,
     tolerance: "pointer",
     helper: "clone",
