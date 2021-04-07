@@ -98,7 +98,8 @@ function recentButtonHandler(identifier) {
 	
 
 	function imageFunction () {
-		var  imageURL = ("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn.val()  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true")
+		console.log(searchBtn.value)
+		var  imageURL = ("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn.value  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true")
 		fetch(imageURL, {
 		"method": "GET",
 		"headers": {
