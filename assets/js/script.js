@@ -95,11 +95,11 @@ function recentButtonHandler(identifier) {
 }
 
 	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
-document.getElementById("countrySearchFunction").addEventListener("click", function(imageFunction));
+document.getElementById("countrySearchBtn").addEventListener("click", imageFunction);
 
 	function imageFunction () {
-		console.log(searchBtn.value)
-		var  imageURL = ("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn.value  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true")
+		console.log(userSearchCountry)
+		var  imageURL = ("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + userSearchCountry  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true")
 		fetch(imageURL, {
 		"method": "GET",
 		"headers": {
