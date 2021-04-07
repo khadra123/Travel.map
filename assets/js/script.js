@@ -28,7 +28,7 @@ if (!localStorage.getItem('recentSearch')) {
 //run this function on page load so containers are not empty 
 getCountryCodeRegions()
 recentSearchBtn()
-//imageFunction()
+imageFunction()
 
 
 //start of all functions 
