@@ -95,9 +95,10 @@ function recentButtonHandler(identifier) {
 }
 
 	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
-	var  imageURL = ("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true")
+	
 
 	function imageFunction () {
+		var  imageURL = ("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn.val()  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true")
 		fetch(imageURL, {
 		"method": "GET",
 		"headers": {
