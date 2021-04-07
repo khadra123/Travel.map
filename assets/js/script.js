@@ -95,8 +95,10 @@ function recentButtonHandler(identifier) {
 }
 
 	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
+	var  imageURL = ("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true")
+
 	function imageFunction () {
-		fetch("https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/ImageSearchAPI?q=" + searchBtn  + "&pageNumber=1&pageSize=1&autoCorrect=true&safeSearch=true", {
+		fetch(imageURL, {
 		"method": "GET",
 		"headers": {
 			"x-rapidapi-key": "edc80740bfmsh7af0ea3522b23e7p1413b9jsnbec35903712b",
@@ -110,6 +112,7 @@ function recentButtonHandler(identifier) {
 			console.error(err);
 		});
 	};
+
 
 //Nested API call to get country code first then based on code get country regions
 function getCountryCodeRegions() {
