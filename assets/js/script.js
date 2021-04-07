@@ -208,7 +208,7 @@ function getCountryCodeRegions() {
  // enable draggable/sortable feature on list-group elements
 $("#list-results, #list-saved, #list-other").sortable({
     // enable dragging across lists
-    connectWith: "#list-results, #list-saved, #list-other",
+    connectWith: $("#list-results, #list-saved, #list-other"),
     scroll: false,
     placeholder: "ui-state-highlight",
     opacity: 0.6,
