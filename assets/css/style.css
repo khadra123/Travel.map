@@ -1,5 +1,5 @@
 :root {
-    --primary: #81c6ee;
+    --primary: hsl(202, 76%, 72%);
     --secondary: #217794;
     --tertiary: #274857;
     --light-dark: #1c4a7e;
@@ -31,9 +31,9 @@ footer{
     flex-wrap: wrap;
 }
 
-#recent-search-btn, #recent-search-container {
+/* #recent-search-btn, #recent-search-container {
     display: none;
-}
+} */
 
   
 #trash:hover {
