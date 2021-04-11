@@ -40,3 +40,6 @@ footer{
     background-color: rgba(234, 0, 39, 1);
   }
 
+ul {
+    padding: 1rem;
+}

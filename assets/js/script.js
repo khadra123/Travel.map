@@ -94,7 +94,7 @@ function recentButtonHandler(identifier) {
 	window.scrollTo(0, 0);
 }
 
-/* 	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
+	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
     document.getElementById("countrySearchFunction").addEventListener("click", function(imageFunction));
 
 	function imageFunction () {
@@ -114,7 +114,7 @@ function recentButtonHandler(identifier) {
 			console.error(err);
 		});
 	};
- */
+ 
 
 //Nested API call to get country code first then based on code get country regions
 function getCountryCodeRegions() {
