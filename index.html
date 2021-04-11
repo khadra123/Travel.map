@@ -48,18 +48,18 @@
     </div>
 
     <!--Search Results header-->
-    <div class="row m-4 hidden-on-page-load">
+    <div class="row m-4">
       <div class="col">
         <h2 class="text-center display-5">Search Results</h2>
       </div>
     </div>
 
     <!--search results box-->
-    <div class="row hidden-on-page-load" id="results">
+    <div class="row" id="results">
 
       <!--First Card -->
       <div class="col-md-6">
-          <div class="card text-white bg-dark m-2 rounded">
+          <div class="card text-white bg-dark m-2 rounded h-100">
               <div class="card-header text-center fs-4">
                  <h4>Image of <span class="display-country-name"></span></h4>
               </div>
@@ -72,14 +72,14 @@
 
       <!--Second Card-->
       <div class="col-md-6">
-          <div class="card text-white bg-dark m-2 rounded">
+          <div class="card text-white bg-dark m-2 rounded h-100">
               <div class="card-header text-center fs-4">
                 <h4>Places to visit in <span class="display-country-name"></span></h4>
               </div>
               <div id = "display-result-regions" class="card-body text-center" >
                 <!--List of results-->
                 <ul id="list-results" class="list-group list-group-flush">
-                  <li class="list-group-item"></li>
+                  <!--<li class="list-group-item"></li> -->
                 </ul>
                 <p class="card-text">Drag and drop places to 'My list of places to visit' box below to build your list</p>
               </div>
@@ -88,14 +88,14 @@
     </div>
 
     <!--SSaved results header-->
-    <div class="row m-4 hidden-on-page-load">
+    <div class="row m-4 ">
         <div class="col">
           <h2 class="text-center display-5">Saved Lists</h2>
         </div>
       </div>
 
     <!--saved cities-->
-    <div class="row savedResultsRow hidden-on-page-load"  id="history">
+    <div class="row savedResultsRow "  id="history">
       
       <!--Saved results col 1-->  
       <div class="col-md-6">
@@ -129,7 +129,7 @@
     </div>
 
     <!--recent searches-->
-    <div id="recent-search-container" class=" m-4  hidden-on-page-load">
+    <div id="recent-search-container" class=" m-4  ">
       <div class="col-12">
         <h2 class="text-center display-5">Recently Searched</h2>
       </div>
@@ -139,7 +139,7 @@
 
     
     <!--trash bar-->
-    <div class="mt-auto overflow-hidden  hidden-on-page-load" id="trash">
+    <div class="mt-auto overflow-hidden" id="trash">
       <div class="w-100 p-3 bg-info text-dark text-center bottom-trash">
         <span class="oi oi-trash"> </span> Drop Here to Remove.
       </div>

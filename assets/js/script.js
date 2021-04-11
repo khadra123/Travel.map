@@ -61,6 +61,7 @@ function countrySearchFunction(){
 
 	} else {
 		//display error msg on html
+		$('#inputErrorMsg').remove();
 		var incorrectInputMsg = $('<p>');
 		incorrectInputMsg.text('Please enter validate country name');
 		incorrectInputMsg.attr('id', 'inputErrorMsg');
@@ -75,7 +76,7 @@ function recentSearchBtn() {
 	
 	for (i = 0; i < historySearchList.length; i++) {
 		var btn = $('<button>');
-		btn.addClass('btn btn-info my-sm-0 m-1');
+		btn.addClass('btn btn-info my-sm-1 m-1');
 		btn.attr('type', 'button');
 		btn.text(historySearchList[i]);
 		btn.attr('value', historySearchList[i]);
