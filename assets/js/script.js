@@ -94,8 +94,8 @@ function recentButtonHandler(identifier) {
 	window.scrollTo(0, 0);
 }
 
-	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
-document.getElementById("countrySearchFunction").addEventListener("click", function(imageFunction));
+/* 	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
+    document.getElementById("countrySearchFunction").addEventListener("click", function(imageFunction));
 
 	function imageFunction () {
 		console.log(searchBtn.value)
@@ -114,7 +114,7 @@ document.getElementById("countrySearchFunction").addEventListener("click", funct
 			console.error(err);
 		});
 	};
-
+ */
 
 //Nested API call to get country code first then based on code get country regions
 function getCountryCodeRegions() {
@@ -213,9 +213,8 @@ function getCountryCodeRegions() {
  // enable draggable/sortable feature on list-group elements
 $("#list-results, #list-saved, #list-other").sortable({
     // enable dragging across lists
-    connectWith: $("#list-results, #list-saved, #list-other"),
+    connectWith: "#list-results, #list-saved, #list-other",
     scroll: false,
-    placeholder: "ui-state-highlight",
     opacity: 0.6,
     tolerance: "pointer",
     helper: "clone",
