@@ -26,14 +26,16 @@ if (!localStorage.getItem('recentSearch')) {
 	var historySearchList = JSON.parse(localStorage.getItem('recentSearch'));  
 
 //run this function on page load so containers are not empty 
+$('.display-country-name').text('Canada');
 getCountryCodeRegions()
 recentSearchBtn()
-//imageFunction()
+imageFunction()
 
 
 //start of all functions 
 function countrySearchFunction(){
 	userSearchCountry = searchBtn.value;
+	
 
 	//Clear placeholder test and last input
 	$(searchBtn).val('')
@@ -41,6 +43,7 @@ function countrySearchFunction(){
 
 	//if statement to check if user has put in country name or not
 	if(userSearchCountry) {
+		
 		//display country search name
 		$('.display-country-name').text(userSearchCountry);
 		//hid the error msg if present
@@ -49,7 +52,7 @@ function countrySearchFunction(){
 		$('#list-results').html("");
 		getCountryCodeRegions()
 
-		//imageFunction()
+		imageFunction()
 
 		if (historySearchList) {
 			historySearchList.push(userSearchCountry);
@@ -59,6 +62,7 @@ function countrySearchFunction(){
 
 	} else {
 		//display error msg on html
+		$('#inputErrorMsg').remove();
 		var incorrectInputMsg = $('<p>');
 		incorrectInputMsg.text('Please enter validate country name');
 		incorrectInputMsg.attr('id', 'inputErrorMsg');
@@ -73,7 +77,7 @@ function recentSearchBtn() {
 	
 	for (i = 0; i < historySearchList.length; i++) {
 		var btn = $('<button>');
-		btn.addClass('btn btn-info my-sm-0 m-1');
+		btn.addClass('btn btn-info my-sm-1 m-1');
 		btn.attr('type', 'button');
 		btn.text(historySearchList[i]);
 		btn.attr('value', historySearchList[i]);
@@ -88,14 +92,15 @@ function recentButtonHandler(identifier) {
 	//console.log('hi');
 	userSearchCountry = $(identifier).val();
 	$('#list-results').html("");
+	$('.display-country-name').text(userSearchCountry);
 	//console.log(userSearchCountry);
 	getCountryCodeRegions()
 	imageFunction()
 	window.scrollTo(0, 0);
 }
 
-	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
-document.getElementById("countrySearchBtn").addEventListener("click", imageFunction);
+//api for image 
+//document.getElementById("countrySearchBtn").addEventListener("click", imageFunction);
 
 	function imageFunction () {
 		console.log(userSearchCountry)
@@ -125,8 +130,7 @@ document.getElementById("countrySearchBtn").addEventListener("click", imageFunct
 
 			// append image
 			responseContainerEl.appendChild(apiImage);
-			apiImage.addClass("width", "auto");
-			apiImage.addClass("height", "50px")
+			
 		})
 			.catch(err => {
 			console.error(err);

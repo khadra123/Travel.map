@@ -59,27 +59,27 @@
 
       <!--First Card -->
       <div class="col-md-6">
-          <div class="card text-white bg-dark m-2 rounded">
+          <div class="card text-white bg-dark m-2 rounded h-100">
               <div class="card-header text-center fs-4">
                  <h4>Image of <span class="display-country-name"></span></h4>
               </div>
               <div class="card-body text-center" >
-                
-                <div id="image-response"></div>
+                <div id="image-response">
+                </div>
               </div>
             </div>
         </div>
 
       <!--Second Card-->
       <div class="col-md-6">
-          <div class="card text-white bg-dark m-2 rounded">
+          <div class="card text-white bg-dark m-2 rounded h-100">
               <div class="card-header text-center fs-4">
                 <h4>Places to visit in <span class="display-country-name"></span></h4>
               </div>
               <div id = "display-result-regions" class="card-body text-center" >
                 <!--List of results-->
                 <ul id="list-results" class="list-group list-group-flush">
-                  <li class="list-group-item"></li>
+                  <!--<li class="list-group-item"></li> -->
                 </ul>
                 <p class="card-text">Drag and drop places to 'My list of places to visit' box below to build your list</p>
               </div>
@@ -88,14 +88,14 @@
     </div>
 
     <!--SSaved results header-->
-    <div class="row m-4">
+    <div class="row m-4 ">
         <div class="col">
           <h2 class="text-center display-5">Saved Lists</h2>
         </div>
       </div>
 
     <!--saved cities-->
-    <div class="row" class="savedResultsRow" id="history">
+    <div class="row savedResultsRow "  id="history">
       
       <!--Saved results col 1-->  
       <div class="col-md-6">
@@ -128,22 +128,24 @@
         </div>
     </div>
 
-    <div id="recent-search-container" class="row m-4">
-      <div class="col">
+    <!--recent searches-->
+    <div id="recent-search-container" class=" m-4  ">
+      <div class="col-12">
         <h2 class="text-center display-5">Recently Searched</h2>
+      </div>
+      <div class="col-12 m-2" id="recent-search-btn">
       </div>
     </div>
 
-    <div class="row m-2" id="recent-search-btn">
     
-    </div>
+    <!--trash bar-->
     <div class="mt-auto overflow-hidden" id="trash">
       <div class="w-100 p-3 bg-info text-dark text-center bottom-trash">
         <span class="oi oi-trash"> </span> Drop Here to Remove.
       </div>
     </div>  
         
-    </div>
+
 
     <!--Footer-->
     <footer class="text-muted font-weight-lighter fs-6 p-4">
