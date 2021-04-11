@@ -26,6 +26,7 @@ if (!localStorage.getItem('recentSearch')) {
 	var historySearchList = JSON.parse(localStorage.getItem('recentSearch'));  
 
 //run this function on page load so containers are not empty 
+$('.display-country-name').text('Canada');
 getCountryCodeRegions()
 recentSearchBtn()
 imageFunction()
@@ -51,7 +52,7 @@ function countrySearchFunction(){
 		$('#list-results').html("");
 		getCountryCodeRegions()
 
-		//imageFunction()
+		imageFunction()
 
 		if (historySearchList) {
 			historySearchList.push(userSearchCountry);
@@ -91,14 +92,15 @@ function recentButtonHandler(identifier) {
 	//console.log('hi');
 	userSearchCountry = $(identifier).val();
 	$('#list-results').html("");
+	$('.display-country-name').text(userSearchCountry);
 	//console.log(userSearchCountry);
 	getCountryCodeRegions()
 	imageFunction()
 	window.scrollTo(0, 0);
 }
 
-	//api for image ----I have commented out your callback in countrySearchFunction (line 33) for testing purpose -chaitali
-document.getElementById("countrySearchBtn").addEventListener("click", imageFunction);
+//api for image 
+//document.getElementById("countrySearchBtn").addEventListener("click", imageFunction);
 
 	function imageFunction () {
 		console.log(userSearchCountry)
