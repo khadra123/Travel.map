@@ -132,7 +132,7 @@ document.getElementById("countrySearchBtn").addEventListener("click", imageFunct
 			console.error(err);
 		})
 	};
-
+ 
 
 //Nested API call to get country code first then based on code get country regions
 function getCountryCodeRegions() {
@@ -229,10 +229,11 @@ function getCountryCodeRegions() {
 
 
  // enable draggable/sortable feature on list-group elements
-$(" #list-results").sortable({
+$("#list-results, #list-saved, #list-other").sortable({
     // enable dragging across lists
-    connectWith: $("#list-saved"),
+    connectWith: "#list-results, #list-saved, #list-other",
     scroll: false,
+    opacity: 0.6,
     tolerance: "pointer",
     helper: "clone",
     activate: function(event) {
