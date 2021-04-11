@@ -28,12 +28,13 @@ if (!localStorage.getItem('recentSearch')) {
 //run this function on page load so containers are not empty 
 getCountryCodeRegions()
 recentSearchBtn()
-//imageFunction()
+imageFunction()
 
 
 //start of all functions 
 function countrySearchFunction(){
 	userSearchCountry = searchBtn.value;
+	
 
 	//Clear placeholder test and last input
 	$(searchBtn).val('')
@@ -41,6 +42,7 @@ function countrySearchFunction(){
 
 	//if statement to check if user has put in country name or not
 	if(userSearchCountry) {
+		
 		//display country search name
 		$('.display-country-name').text(userSearchCountry);
 		//hid the error msg if present
@@ -125,8 +127,7 @@ document.getElementById("countrySearchBtn").addEventListener("click", imageFunct
 
 			// append image
 			responseContainerEl.appendChild(apiImage);
-			apiImage.addClass("width", "auto");
-			apiImage.addClass("height", "50px")
+			
 		})
 			.catch(err => {
 			console.error(err);

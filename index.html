@@ -48,14 +48,14 @@
     </div>
 
     <!--Search Results header-->
-    <div class="row m-4">
+    <div class="row m-4 hidden-on-page-load">
       <div class="col">
         <h2 class="text-center display-5">Search Results</h2>
       </div>
     </div>
 
     <!--search results box-->
-    <div class="row" id="results">
+    <div class="row hidden-on-page-load" id="results">
 
       <!--First Card -->
       <div class="col-md-6">
@@ -64,8 +64,8 @@
                  <h4>Image of <span class="display-country-name"></span></h4>
               </div>
               <div class="card-body text-center" >
-                
-                <div id="image-response"></div>
+                <div id="image-response">
+                </div>
               </div>
             </div>
         </div>
@@ -88,14 +88,14 @@
     </div>
 
     <!--SSaved results header-->
-    <div class="row m-4">
+    <div class="row m-4 hidden-on-page-load">
         <div class="col">
           <h2 class="text-center display-5">Saved Lists</h2>
         </div>
       </div>
 
     <!--saved cities-->
-    <div class="row" class="savedResultsRow" id="history">
+    <div class="row savedResultsRow hidden-on-page-load"  id="history">
       
       <!--Saved results col 1-->  
       <div class="col-md-6">
@@ -128,22 +128,24 @@
         </div>
     </div>
 
-    <div id="recent-search-container" class="row m-4">
-      <div class="col">
+    <!--recent searches-->
+    <div id="recent-search-container" class=" m-4  hidden-on-page-load">
+      <div class="col-12">
         <h2 class="text-center display-5">Recently Searched</h2>
+      </div>
+      <div class="col-12 m-2" id="recent-search-btn">
       </div>
     </div>
 
-    <div class="row m-2" id="recent-search-btn">
     
-    </div>
-    <div class="mt-auto overflow-hidden" id="trash">
+    <!--trash bar-->
+    <div class="mt-auto overflow-hidden  hidden-on-page-load" id="trash">
       <div class="w-100 p-3 bg-info text-dark text-center bottom-trash">
         <span class="oi oi-trash"> </span> Drop Here to Remove.
       </div>
     </div>  
         
-    </div>
+
 
     <!--Footer-->
     <footer class="text-muted font-weight-lighter fs-6 p-4">
